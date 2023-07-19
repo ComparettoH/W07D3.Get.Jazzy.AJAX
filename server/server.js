@@ -1,8 +1,13 @@
+// declaring a function as 'express' which we a requiring from another module
+// that created this code
 const express = require('express');
 
+// we are storing the input of express into the constant variable named app
 const app = express();
+// port is assigning the url to 5000
 const PORT = 5000;
-
+// an array is being created with the name 'artistListArray' and contains objects with
+// properties of name, born, died (4 objects total)
 const artistListArray = [
     {
         name: 'Miles Davis',
@@ -25,7 +30,8 @@ const artistListArray = [
         died: 1971,
     },
 ];
-
+// an array is being created with the name 'songListArray' and contains objects with
+// properties of title & artist (4 objects total)
 const songListArray = [
     {
         title: 'Take Five',
@@ -45,13 +51,20 @@ const songListArray = [
     },
 ];
 
+// We're using express to send static code to the browser/homepage
 app.use(express.static('server/public'));
 
+// We're using express to create a url path for artist and creating a anonymous function
+// that when the server receives a GET request from (browser and/or client) it runs the 
+// function to send the response of artist list array 
 app.get('/artist', (req, res) => {
     res.send(artistListArray);
 });
 
 // TODO - Add GET for songs
+app.get('/song', (req, res) => {
+    res.send(songListArray);
+});
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT)
